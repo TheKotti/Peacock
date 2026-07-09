@@ -1,0 +1,133 @@
+{
+    "meta": {
+        "Location": "LOCATION_PARENT_COLOMBIA",
+        "GameVersions": ["h3"]
+    },
+    "groups": [
+        {
+            "Name": "UI_MENU_PAGE_PROFILE_CHALLENGES_CATEGORY_PACK_EXAMPLE",
+            "Image": "images/challenges/categories/packcheesecake/tile.jpg",
+            "Icon": "challenge_category_feats",
+            "CategoryId": "example-pack",
+            "Description": "",
+            "OrderIndex": 6.5,
+            "Challenges": [
+                {
+                    "Id": "f3f2fb96-8608-4aa4-8f22-f175fa7fe8dc",
+                    "Name": "UI_PEACOCK_CHALLENGEPACK_EXAMPLE_WRAPPER_NAME",
+                    "ImageName": "images/challenges/categories/packcheesecake/tile.jpg",
+                    "Description": "UI_PEACOCK_CHALLENGEPACK_EXAMPLE_WRAPPER_DESC",
+                    "Rewards": {
+                        "MasteryXP": 2000
+                    },
+                    "Drops": [],
+                    "IsPlayable": false,
+                    "IsLocked": false,
+                    "HideProgression": false,
+                    "CategoryName": "UI_MENU_PAGE_PROFILE_CHALLENGES_CATEGORY_PACK_EXAMPLE",
+                    "Icon": "challenge_category_feats",
+                    "LocationId": "",
+                    "ParentLocationId": "",
+                    "Type": "global",
+                    "DifficultyLevels": [],
+                    "OrderIndex": 100000,
+                    "XpModifier": {},
+                    "RuntimeType": "Hit",
+                    "Definition": {
+                        "Scope": "profile",
+                        "Constants": {
+                            "RequiredChallenges": [
+                                "38529743-a76e-42a0-b626-c211c8ffee27",
+                                "67415b62-a694-4731-9a0d-39b0f765a135"
+                            ]
+                        },
+                        "Context": {
+                            "CompletedChallenges": []
+                        },
+                        "ContextListeners": {
+                            "CompletedChallenges": {
+                                "comparand": "$.RequiredChallenges",
+                                "type": "challengetree"
+                            }
+                        },
+                        "States": {
+                            "Start": {
+                                "ChallengeCompleted": [
+                                    {
+                                        "Condition": {
+                                            "$any": {
+                                                "?": {
+                                                    "$eq": [
+                                                        "$.#",
+                                                        "$Value.ChallengeId"
+                                                    ]
+                                                },
+                                                "in": "$.RequiredChallenges"
+                                            }
+                                        },
+                                        "$pushunique": [
+                                            "CompletedChallenges",
+                                            "$Value.ChallengeId"
+                                        ]
+                                    },
+                                    {
+                                        "Condition": {
+                                            "$eq": [
+                                                "($.CompletedChallenges).Count",
+                                                "($.RequiredChallenges).Count"
+                                            ]
+                                        },
+                                        "Transition": "Success"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "Tags": ["example-pack", "story", "hard"]
+                },
+                {
+                    "Id": "67415b62-a694-4731-9a0d-39b0f765a135",
+                    "Name": "UI_PEACOCK_CHALLENGEPACK_EXAMPLE_COLOMBIAPACIFY_NAME",
+                    "ImageName": "images/challenges/categories/packcheesecake/tile.jpg",
+                    "Description": "UI_PEACOCK_CHALLENGEPACK_EXAMPLE_COLOMBIAPACIFY_DESC",
+                    "Rewards": {
+                        "MasteryXP": 1000
+                    },
+                    "Drops": [],
+                    "IsPlayable": true,
+                    "IsLocked": false,
+                    "HideProgression": false,
+                    "CategoryName": "UI_MENU_PAGE_PROFILE_CHALLENGES_CATEGORY_PACK_EXAMPLE",
+                    "Icon": "challenge_category_feats",
+                    "LocationId": "LOCATION_PARENT_COLOMBIA",
+                    "ParentLocationId": "LOCATION_PARENT_COLOMBIA",
+                    "Type": "parentlocation",
+                    "DifficultyLevels": [],
+                    "OrderIndex": 100002,
+                    "XpModifier": {},
+                    "RuntimeType": "Hit",
+                    "Definition": {
+                        "Scope": "session",
+                        "States": {
+                            "Start": {
+                                "Spotted": {
+                                    "Transition": "Failure"
+                                },
+                                "Pacify": {
+                                    "Condition": {
+                                        "$eq": [
+                                            "$Value.KillItemRepositoryId",
+                                            "acc9d7b8-80f1-4bb0-ba81-3a69b09e0543"
+                                        ]
+                                    },
+                                    "Transition": "Success"
+                                }
+                            }
+                        }
+                    },
+                    "Tags": ["example-pack", "story", "medium"]
+                }
+            ]
+        }
+    ]
+}
